@@ -51,10 +51,10 @@ public class CustomerService {
 
     public Object create(CustomerModel customer) throws Exception {
         if (customer.getName().equals("") || customer.getName().contains(" "))
-            throw new Exception("Digite nome e sobrenome");
+            throw new ObjectNotFoundException("Digite nome e sobrenome");
         if (customer.getEmail().equals("") || !ValidatorsUtil.validateEmail(customer.getEmail()))
-            throw new Exception("E-mail inválido");
-        if (!ValidatorsUtil.validateCEP(customer.getCep())) throw new Exception("CEP inválido");
+            throw new ObjectNotFoundException("E-mail inválido");
+        if (!ValidatorsUtil.validateCEP(customer.getCep())) throw new ObjectNotFoundException("CEP inválido");
 
         ViaCep rest = new ViaCep();
         Address addressEntity = new Address();
